@@ -1,6 +1,6 @@
 <?php
 
-namespace Musonza\Chat\Http\Requests;
+namespace Eatvio\Chat\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -14,10 +14,10 @@ class StoreConversation extends FormRequest
     public function rules()
     {
         return [
-            'participants'        => 'array',
-            'participants.*.id'   => 'required',
+            'participants' => 'array',
+            'participants.*.id' => 'required',
             'participants.*.type' => 'required|string',
-            'data'                => 'array',
+            'data' => 'array',
         ];
     }
 

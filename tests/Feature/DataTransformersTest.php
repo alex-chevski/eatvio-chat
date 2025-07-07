@@ -1,10 +1,10 @@
 <?php
 
-namespace Musonza\Chat\Tests\Feature;
+namespace Eatvio\Chat\Tests\Feature;
 
-use Musonza\Chat\Models\Conversation;
-use Musonza\Chat\Tests\Helpers\Transformers\TestConversationTransformer;
-use Musonza\Chat\Tests\TestCase;
+use Eatvio\Chat\Models\Conversation;
+use Eatvio\Chat\Tests\Helpers\Transformers\TestConversationTransformer;
+use Eatvio\Chat\Tests\TestCase;
 
 class DataTransformersTest extends TestCase
 {

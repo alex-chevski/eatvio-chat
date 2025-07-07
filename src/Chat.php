@@ -1,34 +1,32 @@
 <?php
 
-namespace Musonza\Chat;
+namespace Eatvio\Chat;
 
-use Musonza\Chat\Models\Conversation;
-use Musonza\Chat\Models\MessageNotification;
-use Musonza\Chat\Services\ConversationService;
-use Musonza\Chat\Services\MessageService;
-use Musonza\Chat\Traits\SetsParticipants;
+use Eatvio\Chat\Models\Conversation;
+use Eatvio\Chat\Models\MessageNotification;
+use Eatvio\Chat\Services\ConversationService;
+use Eatvio\Chat\Services\MessageService;
+use Eatvio\Chat\Traits\SetsParticipants;
 
 class Chat
 {
     use SetsParticipants;
+
     /**
      * @var MessageService
      */
     protected $messageService;
+
     /**
      * @var ConversationService
      */
     protected $conversationService;
+
     /**
      * @var MessageNotification
      */
     protected $messageNotification;
 
-    /**
-     * @param MessageService      $messageService
-     * @param ConversationService $conversationService
-     * @param MessageNotification $messageNotification
-     */
     public function __construct(
         MessageService $messageService,
         ConversationService $conversationService,
@@ -42,16 +40,14 @@ class Chat
     /**
      * Creates a new conversation.
      *
-     * @param array $participants
-     * @param array $data
      *
      * @return Conversation
      */
     public function createConversation(array $participants, array $data = [])
     {
         $payload = [
-            'participants'   => $participants,
-            'data'           => $data,
+            'participants' => $participants,
+            'data' => $data,
             'direct_message' => $this->conversationService->directMessage,
         ];
 
@@ -68,8 +64,7 @@ class Chat
     /**
      * Sets message.
      *
-     * @param string $message
-     *
+     * @param  string  $message
      * @return MessageService
      */
     public function message($message)
@@ -90,7 +85,6 @@ class Chat
     /**
      * Sets Conversation.
      *
-     * @param Conversation $conversation
      *
      * @return ConversationService
      */
@@ -138,6 +132,6 @@ class Chat
     {
         $fields = config('musonza_chat.sender_fields_whitelist', []);
 
-        return (is_array($fields) && !empty($fields)) ? $fields : null;
+        return (is_array($fields) && ! empty($fields)) ? $fields : null;
     }
 }

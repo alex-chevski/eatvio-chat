@@ -1,29 +1,36 @@
 <?php
 
-namespace Musonza\Chat\Tests;
+namespace Eatvio\Chat\Tests;
 
 require __DIR__.'/../database/migrations/create_chat_tables.php';
 require __DIR__.'/Helpers/migrations.php';
 
 use CreateChatTables;
 use CreateTestTables;
+use Eatvio\Chat\ChatServiceProvider;
+use Eatvio\Chat\Facades\ChatFacade;
+use Eatvio\Chat\Tests\Helpers\Models\User;
 use Illuminate\Foundation\Application;
-use Musonza\Chat\ChatServiceProvider;
-use Musonza\Chat\Facades\ChatFacade;
-use Musonza\Chat\Tests\Helpers\Models\User;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     protected $conversation;
+
     protected $prefix = 'chat_';
+
     protected $userModelPrimaryKey;
+
     public $users;
+
     /** @var User */
     protected $alpha;
+
     /** @var User */
     protected $bravo;
+
     /** @var User */
     protected $charlie;
+
     /** @var User */
     protected $delta;
 
@@ -39,7 +46,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
         $this->withFactories(__DIR__.'/Helpers/factories');
         $this->migrate();
         $this->users = $this->createUsers(6);
-        list($this->alpha, $this->bravo, $this->charlie, $this->delta) = $this->users;
+        [$this->alpha, $this->bravo, $this->charlie, $this->delta] = $this->users;
     }
 
     protected function migrateTestTables()
@@ -52,15 +59,14 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function migrate()
     {
         $this->migrateTestTables();
-        (new CreateChatTables())->up();
-        (new CreateTestTables())->up();
+        (new CreateChatTables)->up();
+        (new CreateTestTables)->up();
     }
 
     /**
      * Define environment setup.
      *
-     * @param Application $app
-     *
+     * @param  Application  $app
      * @return void
      */
     protected function getEnvironmentSetUp($app)
@@ -70,33 +76,33 @@ class TestCase extends \Orchestra\Testbench\TestCase
         // Setup default database to use sqlite :memory:
         $app['config']->set('database.default', 'testbench');
         $app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
+            'driver' => 'sqlite',
             'database' => ':memory:',
-            'prefix'   => '',
+            'prefix' => '',
         ]);
 
-//         $app['config']->set('database.default', 'testbench');
-//         $app['config']->set('database.connections.testbench', [
-//             'driver' => 'mysql',
-//             'database' => 'chat',
-//             'username' => 'root',
-//             'host' => '127.0.0.1',
-//             'password' => 'my-secret-pw',
-//             'prefix' => '',
-//             'strict'      => true,
-//             'engine'      => null,
-//             'modes'       => [
-//                 'ONLY_FULL_GROUP_BY',
-//                 'STRICT_TRANS_TABLES',
-//                 'NO_ZERO_IN_DATE',
-//                 'NO_ZERO_DATE',
-//                 'ERROR_FOR_DIVISION_BY_ZERO',
-//                 'NO_ENGINE_SUBSTITUTION',
-//             ],
-//         ]);
+        //         $app['config']->set('database.default', 'testbench');
+        //         $app['config']->set('database.connections.testbench', [
+        //             'driver' => 'mysql',
+        //             'database' => 'chat',
+        //             'username' => 'root',
+        //             'host' => '127.0.0.1',
+        //             'password' => 'my-secret-pw',
+        //             'prefix' => '',
+        //             'strict'      => true,
+        //             'engine'      => null,
+        //             'modes'       => [
+        //                 'ONLY_FULL_GROUP_BY',
+        //                 'STRICT_TRANS_TABLES',
+        //                 'NO_ZERO_IN_DATE',
+        //                 'NO_ZERO_DATE',
+        //                 'ERROR_FOR_DIVISION_BY_ZERO',
+        //                 'NO_ENGINE_SUBSTITUTION',
+        //             ],
+        //         ]);
 
-        $app['config']->set('musonza_chat.user_model', 'Musonza\Chat\Tests\Helpers\Models\User');
-        $app['config']->set('musonza_chat.sent_message_event', 'Musonza\Chat\Eventing\MessageWasSent');
+        $app['config']->set('musonza_chat.user_model', 'Eatvio\Chat\Tests\Helpers\Models\User');
+        $app['config']->set('musonza_chat.sent_message_event', 'Eatvio\Chat\Eventing\MessageWasSent');
         $app['config']->set('musonza_chat.broadcasts', false);
         $app['config']->set('musonza_chat.user_model_primary_key', null);
         $app['config']->set('musonza_chat.routes.enabled', true);
@@ -124,8 +130,8 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
     public function tearDown(): void
     {
-        (new CreateChatTables())->down();
-        (new CreateTestTables())->down();
+        (new CreateChatTables)->down();
+        (new CreateTestTables)->down();
         parent::tearDown();
     }
 }

@@ -1,24 +1,28 @@
 <?php
 
-namespace Musonza\Chat\Services;
+namespace Eatvio\Chat\Services;
 
+use Eatvio\Chat\Commanding\CommandBus;
+use Eatvio\Chat\Messages\SendMessageCommand;
+use Eatvio\Chat\Models\Message;
+use Eatvio\Chat\Traits\SetsParticipants;
 use Exception;
-use Musonza\Chat\Commanding\CommandBus;
-use Musonza\Chat\Messages\SendMessageCommand;
-use Musonza\Chat\Models\Message;
-use Musonza\Chat\Traits\SetsParticipants;
 
 class MessageService
 {
     use SetsParticipants;
 
     protected $type = 'text';
+
     protected $data = [];
+
     protected $body;
+
     /**
      * @var CommandBus
      */
     protected $commandBus;
+
     /**
      * @var Message
      */
@@ -45,7 +49,6 @@ class MessageService
      * Set Message type.
      *
      * @param string type
-     *
      * @return $this
      */
     public function type(string $type)
@@ -110,13 +113,13 @@ class MessageService
     /**
      * Sends the message.
      *
-     * @throws Exception
-     *
      * @return Message
+     *
+     * @throws Exception
      */
     public function send()
     {
-        if (!$this->sender) {
+        if (! $this->sender) {
             throw new Exception('Message sender has not been set');
         }
 
@@ -124,7 +127,7 @@ class MessageService
             throw new Exception('Message body has not been set');
         }
 
-        if (!$this->recipient) {
+        if (! $this->recipient) {
             throw new Exception('Message receiver has not been set');
         }
 

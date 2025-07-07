@@ -1,5 +1,5 @@
 {
-  "name": "alex-chevski/chat",
+  "name": "eatvio/chat",
   "description": "Chat Package for Laravel",
   "type": "library",
   "keywords": [
@@ -23,19 +23,19 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Tinashe Musonza",
-      "email": "tashtin263@gmail.com",
+      "name": "alex chevski",
+      "email": "no-reply@eatvio.ru",
       "role": "Developer"
     }
   ],
   "autoload": {
     "psr-4": {
-      "Musonza\\Chat\\": "src/"
+      "Eatvio\\Chat\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Musonza\\Chat\\Tests\\": "tests"
+      "Eatvio\\Chat\\Tests\\": "tests"
     },
     "files": [
       "tests/Helpers/Models.php"
@@ -47,10 +47,10 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Musonza\\Chat\\ChatServiceProvider"
+        "Eatvio\\Chat\\ChatServiceProvider"
       ],
       "aliases": {
-        "Chat": "Musonza\\Chat\\Facades\\ChatFacade"
+        "Chat": "Eatvio\\Chat\\Facades\\ChatFacade"
       }
     }
   }

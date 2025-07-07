@@ -1,15 +1,15 @@
 <?php
 
-namespace Musonza\Chat\Tests;
+namespace Eatvio\Chat\Tests;
 
 use Chat;
+use Eatvio\Chat\Exceptions\DirectMessagingExistsException;
+use Eatvio\Chat\Exceptions\InvalidDirectMessageNumberOfParticipants;
+use Eatvio\Chat\Models\Conversation;
+use Eatvio\Chat\Models\Participation;
+use Eatvio\Chat\Tests\Helpers\Models\Client;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Collection;
-use Musonza\Chat\Exceptions\DirectMessagingExistsException;
-use Musonza\Chat\Exceptions\InvalidDirectMessageNumberOfParticipants;
-use Musonza\Chat\Models\Conversation;
-use Musonza\Chat\Models\Participation;
-use Musonza\Chat\Tests\Helpers\Models\Client;
 
 class ConversationTest extends TestCase
 {
@@ -277,7 +277,7 @@ class ConversationTest extends TestCase
     public function it_can_return_a_conversation_between_users()
     {
         /** @var Conversation $conversation */
-//        $conversation = Chat::makeDirect()->createConversation([$this->alpha, $this->bravo]);
+        //        $conversation = Chat::makeDirect()->createConversation([$this->alpha, $this->bravo]);
         $conversation = Chat::createConversation([$this->alpha, $this->bravo])->makeDirect();
 
         Chat::createConversation([$this->alpha, $this->charlie]);

@@ -1,12 +1,12 @@
 <?php
 
-namespace Musonza\Chat;
+namespace Eatvio\Chat;
 
+use Eatvio\Chat\Models\Conversation;
+use Eatvio\Chat\Models\Message;
+use Eatvio\Chat\Models\MessageNotification;
+use Eatvio\Chat\Models\Participation;
 use Illuminate\Support\ServiceProvider;
-use Musonza\Chat\Models\Conversation;
-use Musonza\Chat\Models\Message;
-use Musonza\Chat\Models\MessageNotification;
-use Musonza\Chat\Models\Participation;
 
 class ChatServiceProvider extends ServiceProvider
 {
@@ -70,7 +70,7 @@ class ChatServiceProvider extends ServiceProvider
      */
     private function registerChat()
     {
-        $this->app->bind('\Musonza\Chat\Chat', function () {
+        $this->app->bind('\Eatvio\Chat\Chat', function () {
             return $this->app->make(Chat::class);
         });
     }

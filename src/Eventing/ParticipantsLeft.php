@@ -1,8 +1,8 @@
 <?php
 
-namespace Musonza\Chat\Eventing;
+namespace Eatvio\Chat\Eventing;
 
-use Musonza\Chat\Models\Conversation;
+use Eatvio\Chat\Models\Conversation;
 
 class ParticipantsLeft extends Event
 {
@@ -10,6 +10,7 @@ class ParticipantsLeft extends Event
      * @var Conversation
      */
     public $conversation;
+
     public $participants;
 
     public function __construct(Conversation $conversation, $participants)

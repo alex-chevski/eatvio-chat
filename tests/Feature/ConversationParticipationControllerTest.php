@@ -1,13 +1,13 @@
 <?php
 
-namespace Musonza\Chat\Tests\Feature;
+namespace Eatvio\Chat\Tests\Feature;
 
 use Chat;
-use Musonza\Chat\Models\Conversation;
-use Musonza\Chat\Models\Participation;
-use Musonza\Chat\Tests\Helpers\Models\Client;
-use Musonza\Chat\Tests\Helpers\Models\User;
-use Musonza\Chat\Tests\TestCase;
+use Eatvio\Chat\Models\Conversation;
+use Eatvio\Chat\Models\Participation;
+use Eatvio\Chat\Tests\Helpers\Models\Client;
+use Eatvio\Chat\Tests\Helpers\Models\User;
+use Eatvio\Chat\Tests\TestCase;
 
 class ConversationParticipationControllerTest extends TestCase
 {

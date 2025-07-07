@@ -1,17 +1,18 @@
 <?php
 
-namespace Musonza\Chat\Models;
+namespace Eatvio\Chat\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Eatvio\Chat\BaseModel;
 //use Illuminate\Database\Eloquent\SoftDeletes;
-use Musonza\Chat\BaseModel;
-use Musonza\Chat\ConfigurationManager;
+use Eatvio\Chat\ConfigurationManager;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Participation extends BaseModel
 {
-//    use SoftDeletes;
+    //    use SoftDeletes;
 
     protected $table = ConfigurationManager::PARTICIPATION_TABLE;
+
     protected $fillable = [
         'conversation_id',
         'settings',

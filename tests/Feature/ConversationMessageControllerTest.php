@@ -1,13 +1,13 @@
 <?php
 
-namespace Musonza\Chat\Tests\Feature;
+namespace Eatvio\Chat\Tests\Feature;
 
 use Chat;
-use Musonza\Chat\Models\Conversation;
-use Musonza\Chat\Models\Message;
-use Musonza\Chat\Tests\Helpers\Models\Client;
-use Musonza\Chat\Tests\Helpers\Models\User;
-use Musonza\Chat\Tests\TestCase;
+use Eatvio\Chat\Models\Conversation;
+use Eatvio\Chat\Models\Message;
+use Eatvio\Chat\Tests\Helpers\Models\Client;
+use Eatvio\Chat\Tests\Helpers\Models\User;
+use Eatvio\Chat\Tests\TestCase;
 
 class ConversationMessageControllerTest extends TestCase
 {
@@ -20,9 +20,9 @@ class ConversationMessageControllerTest extends TestCase
         Chat::conversation($conversation)->addParticipants([$userModel, $clientModel]);
 
         $payload = [
-            'participant_id'   => $userModel->getKey(),
+            'participant_id' => $userModel->getKey(),
             'participant_type' => $userModel->getMorphClass(),
-            'message'          => [
+            'message' => [
                 'body' => 'Hello',
             ],
         ];
@@ -49,12 +49,12 @@ class ConversationMessageControllerTest extends TestCase
 
         $parameters = [
             $conversation->getKey(),
-            'participant_id'   => $userModel->getKey(),
+            'participant_id' => $userModel->getKey(),
             'participant_type' => $userModel->getMorphClass(),
-            'page'             => 1,
-            'perPage'          => 2,
-            'sorting'          => 'desc',
-            'columns'          => [
+            'page' => 1,
+            'perPage' => 2,
+            'sorting' => 'desc',
+            'columns' => [
                 '*',
             ],
         ];
@@ -84,7 +84,7 @@ class ConversationMessageControllerTest extends TestCase
 
         $parameters = [
             $conversation->getKey(),
-            'participant_id'   => $userModel->getKey(),
+            'participant_id' => $userModel->getKey(),
             'participant_type' => $userModel->getMorphClass(),
         ];
 
@@ -112,7 +112,7 @@ class ConversationMessageControllerTest extends TestCase
         $parameters = [
             $conversation->getKey(),
             $message->getKey(),
-            'participant_id'   => $userModel->getKey(),
+            'participant_id' => $userModel->getKey(),
             'participant_type' => $userModel->getMorphClass(),
         ];
 

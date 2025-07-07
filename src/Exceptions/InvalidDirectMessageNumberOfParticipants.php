@@ -1,9 +1,7 @@
 <?php
 
-namespace Musonza\Chat\Exceptions;
+namespace Eatvio\Chat\Exceptions;
 
 use Exception;
 
-class InvalidDirectMessageNumberOfParticipants extends Exception
-{
-}
+class InvalidDirectMessageNumberOfParticipants extends Exception {}

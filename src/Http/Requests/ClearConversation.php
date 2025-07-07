@@ -1,6 +1,6 @@
 <?php
 
-namespace Musonza\Chat\Http\Requests;
+namespace Eatvio\Chat\Http\Requests;
 
 class ClearConversation extends BaseRequest
 {
@@ -12,7 +12,7 @@ class ClearConversation extends BaseRequest
     public function rules()
     {
         return [
-            'participant_id'   => 'required',
+            'participant_id' => 'required',
             'participant_type' => 'required|string',
         ];
     }

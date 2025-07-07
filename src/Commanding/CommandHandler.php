@@ -1,6 +1,6 @@
 <?php
 
-namespace Musonza\Chat\Commanding;
+namespace Eatvio\Chat\Commanding;
 
 interface CommandHandler
 {

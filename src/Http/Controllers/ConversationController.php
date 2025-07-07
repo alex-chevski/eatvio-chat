@@ -1,16 +1,16 @@
 <?php
 
-namespace Musonza\Chat\Http\Controllers;
+namespace Eatvio\Chat\Http\Controllers;
 
 use Chat;
+use Eatvio\Chat\Exceptions\DeletingConversationWithParticipantsException;
+use Eatvio\Chat\Http\Requests\DestroyConversation;
+use Eatvio\Chat\Http\Requests\StoreConversation;
+use Eatvio\Chat\Http\Requests\UpdateConversation;
+use Eatvio\Chat\Models\Conversation;
 use Exception;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
-use Musonza\Chat\Exceptions\DeletingConversationWithParticipantsException;
-use Musonza\Chat\Http\Requests\DestroyConversation;
-use Musonza\Chat\Http\Requests\StoreConversation;
-use Musonza\Chat\Http\Requests\UpdateConversation;
-use Musonza\Chat\Models\Conversation;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class ConversationController extends Controller
@@ -77,12 +77,9 @@ class ConversationController extends Controller
     }
 
     /**
-     * @param DestroyConversation $request
-     * @param                     $id
+     * @return ResponseFactory|Response
      *
      * @throws Exception
-     *
-     * @return ResponseFactory|Response
      */
     public function destroy(DestroyConversation $request, $id): Response
     {

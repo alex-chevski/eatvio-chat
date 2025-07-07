@@ -1,6 +1,6 @@
 <?php
 
-namespace Musonza\Chat\Commanding;
+namespace Eatvio\Chat\Commanding;
 
 use Exception;
 use Illuminate\Foundation\Application;
@@ -18,11 +18,9 @@ class CommandBus
     }
 
     /**
-     * @param $command
+     * @return mixed
      *
      * @throws Exception
-     *
-     * @return mixed
      */
     public function execute($command)
     {

@@ -1,7 +1,5 @@
 <?php
 
-namespace Musonza\Chat\Eventing;
+namespace Eatvio\Chat\Eventing;
 
-class Event
-{
-}
+class Event {}

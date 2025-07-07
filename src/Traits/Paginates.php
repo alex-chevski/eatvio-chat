@@ -1,21 +1,25 @@
 <?php
 
-namespace Musonza\Chat\Traits;
+namespace Eatvio\Chat\Traits;
 
 trait Paginates
 {
     protected $perPage = 25;
+
     protected $page = 1;
+
     protected $sorting = 'asc';
+
     protected $columns = ['*'];
+
     protected $pageName = 'page';
+
     protected $deleted = false;
 
     /**
      * Set the limit.
      *
-     * @param int $limit
-     *
+     * @param  int  $limit
      * @return $this
      */
     public function limit($limit)
@@ -28,7 +32,6 @@ trait Paginates
     /**
      * Set current page for pagination.
      *
-     * @param int $page
      *
      * @return $this
      */
@@ -65,10 +68,10 @@ trait Paginates
     public function getPaginationParams()
     {
         return [
-            'page'     => $this->page,
-            'perPage'  => $this->perPage,
-            'sorting'  => $this->sorting,
-            'columns'  => $this->columns,
+            'page' => $this->page,
+            'perPage' => $this->perPage,
+            'sorting' => $this->sorting,
+            'columns' => $this->columns,
             'pageName' => $this->pageName,
         ];
     }

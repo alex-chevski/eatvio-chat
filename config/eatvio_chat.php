@@ -5,7 +5,7 @@ return [
      * This will allow you to broadcast an event when a message is sent
      * Example:
      * Channel: mc-chat-conversation.2,
-     * Event: Musonza\Chat\Eventing\MessageWasSent
+     * Event: Eatvio\Chat\Eventing\MessageWasSent
      */
     'broadcasts' => false,
 
@@ -33,17 +33,17 @@ return [
      */
     'routes' => [
         'path_prefix' => 'chat',
-        'middleware'  => ['web'],
+        'middleware' => ['web'],
     ],
 
     /*
      * Default values for pagination
      */
     'pagination' => [
-        'page'     => 1,
-        'perPage'  => 25,
-        'sorting'  => 'asc',
-        'columns'  => ['*'],
+        'page' => 1,
+        'perPage' => 25,
+        'sorting' => 'asc',
+        'columns' => ['*'],
         'pageName' => 'page',
     ],
 
@@ -52,7 +52,7 @@ return [
      */
     'transformers' => [
         'conversation' => null,
-        'message'      => null,
-        'participant'  => null,
+        'message' => null,
+        'participant' => null,
     ],
 ];

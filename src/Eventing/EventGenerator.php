@@ -1,6 +1,6 @@
 <?php
 
-namespace Musonza\Chat\Eventing;
+namespace Eatvio\Chat\Eventing;
 
 trait EventGenerator
 {

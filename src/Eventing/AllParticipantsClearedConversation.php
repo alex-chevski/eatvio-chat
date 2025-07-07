@@ -1,8 +1,8 @@
 <?php
 
-namespace Musonza\Chat\Eventing;
+namespace Eatvio\Chat\Eventing;
 
-use Musonza\Chat\Models\Conversation;
+use Eatvio\Chat\Models\Conversation;
 
 class AllParticipantsClearedConversation
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace Musonza\Chat\Tests\Feature\Conversation;
+namespace Eatvio\Chat\Tests\Feature\Conversation;
 
 use Chat;
-use Musonza\Chat\ConfigurationManager;
-use Musonza\Chat\Models\Conversation;
-use Musonza\Chat\Tests\Helpers\Models\Bot;
-use Musonza\Chat\Tests\Helpers\Models\Client;
-use Musonza\Chat\Tests\Helpers\Models\User;
-use Musonza\Chat\Tests\TestCase;
+use Eatvio\Chat\ConfigurationManager;
+use Eatvio\Chat\Models\Conversation;
+use Eatvio\Chat\Tests\Helpers\Models\Bot;
+use Eatvio\Chat\Tests\Helpers\Models\Client;
+use Eatvio\Chat\Tests\Helpers\Models\User;
+use Eatvio\Chat\Tests\TestCase;
 use Symfony\Component\HttpFoundation\Response;
 
 class ConversationControllerTest extends TestCase
@@ -30,7 +30,7 @@ class ConversationControllerTest extends TestCase
 
         $payload = [
             'participants' => $participants,
-            'data'         => ['title' => 'PHP Channel', 'description' => 'This is our test channel'],
+            'data' => ['title' => 'PHP Channel', 'description' => 'This is our test channel'],
         ];
 
         $this->postJson(route('conversations.store'), $payload)
@@ -40,12 +40,12 @@ class ConversationControllerTest extends TestCase
             ]);
 
         $this->assertDatabaseHas(ConfigurationManager::PARTICIPATION_TABLE, [
-            'messageable_id'   => $userModel->getKey(),
+            'messageable_id' => $userModel->getKey(),
             'messageable_type' => $userModel->getMorphClass(),
         ]);
 
         $this->assertDatabaseHas(ConfigurationManager::PARTICIPATION_TABLE, [
-            'messageable_id'   => $botModel->getKey(),
+            'messageable_id' => $botModel->getKey(),
             'messageable_type' => $botModel->getMorphClass(),
         ]);
     }

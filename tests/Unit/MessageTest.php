@@ -1,14 +1,14 @@
 <?php
 
-namespace Musonza\Chat\Tests;
+namespace Eatvio\Chat\Tests;
 
 use Chat;
+use Eatvio\Chat\Models\Conversation;
+use Eatvio\Chat\Models\Message;
+use Eatvio\Chat\Tests\Helpers\Models\Bot;
+use Eatvio\Chat\Tests\Helpers\Models\Client;
+use Eatvio\Chat\Tests\Helpers\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Musonza\Chat\Models\Conversation;
-use Musonza\Chat\Models\Message;
-use Musonza\Chat\Tests\Helpers\Models\Bot;
-use Musonza\Chat\Tests\Helpers\Models\Client;
-use Musonza\Chat\Tests\Helpers\Models\User;
 
 class MessageTest extends TestCase
 {
@@ -190,10 +190,10 @@ class MessageTest extends TestCase
         $this->assertCount(3, $recent_messages);
 
         $recent_messages = Chat::conversations()->setParticipant($this->alpha)->setPaginationParams([
-            'perPage'  => 1,
-            'page'     => 1,
+            'perPage' => 1,
+            'page' => 1,
             'pageName' => 'test',
-            'sorting'  => 'desc',
+            'sorting' => 'desc',
         ])->get();
 
         $this->assertCount(1, $recent_messages);
@@ -202,7 +202,7 @@ class MessageTest extends TestCase
     /** @test */
     public function it_return_unread_messages_count_for_user()
     {
-        list($this->alpha, $this->bravo) = $this->users;
+        [$this->alpha, $this->bravo] = $this->users;
 
         $conversation = Chat::createConversation([$this->alpha, $this->bravo]);
         Chat::message('Hello 1')->from($this->bravo)->to($conversation)->send();
@@ -220,7 +220,7 @@ class MessageTest extends TestCase
     /** @test */
     public function it_gets_a_message_by_id()
     {
-        list($this->alpha, $this->bravo) = $this->users;
+        [$this->alpha, $this->bravo] = $this->users;
 
         $conversation = Chat::createConversation([$this->alpha, $this->bravo]);
         Chat::message('Hello 1')->from($this->bravo)->to($conversation)->send();

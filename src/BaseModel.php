@@ -1,6 +1,6 @@
 <?php
 
-namespace Musonza\Chat;
+namespace Eatvio\Chat;
 
 use Illuminate\Database\Eloquent\Model;
 

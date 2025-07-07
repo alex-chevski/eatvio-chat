@@ -1,10 +1,10 @@
 <?php
 
+use Eatvio\Chat\Models\Conversation;
+use Eatvio\Chat\Tests\Helpers\Models\Bot;
+use Eatvio\Chat\Tests\Helpers\Models\Client;
+use Eatvio\Chat\Tests\Helpers\Models\User;
 use Faker\Generator as Faker;
-use Musonza\Chat\Models\Conversation;
-use Musonza\Chat\Tests\Helpers\Models\Bot;
-use Musonza\Chat\Tests\Helpers\Models\Client;
-use Musonza\Chat\Tests\Helpers\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,22 +21,22 @@ $factory->define(User::class, function (Faker $faker) {
     static $password;
 
     return [
-        'name'           => $faker->name,
-        'email'          => $faker->unique()->safeEmail,
-        'password'       => $password ?: $password = bcrypt('secret'),
+        'name' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
+        'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => 'xahja87ahjahajhajhja',
     ];
 });
 
 $factory->define(Client::class, function (Faker $faker) {
     return [
-        'name'           => $faker->name,
+        'name' => $faker->name,
     ];
 });
 
 $factory->define(Bot::class, function (Faker $faker) {
     return [
-        'name'           => $faker->name,
+        'name' => $faker->name,
     ];
 });
 

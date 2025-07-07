@@ -1,6 +1,6 @@
 <?php
 
-namespace Musonza\Chat\Http\Requests;
+namespace Eatvio\Chat\Http\Requests;
 
 class StoreMessage extends BaseRequest
 {
@@ -12,10 +12,10 @@ class StoreMessage extends BaseRequest
     public function rules()
     {
         return [
-            'participant_id'   => 'required',
+            'participant_id' => 'required',
             'participant_type' => 'required|string',
-            'message'          => 'required|array',
-            'message.body'     => 'required',
+            'message' => 'required|array',
+            'message.body' => 'required',
         ];
     }
 

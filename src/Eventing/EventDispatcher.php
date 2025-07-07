@@ -1,9 +1,9 @@
 <?php
 
-namespace Musonza\Chat\Eventing;
+namespace Eatvio\Chat\Eventing;
 
+use Eatvio\Chat\Chat;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
-use Musonza\Chat\Chat;
 
 class EventDispatcher
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Musonza\Chat\Eventing;
+namespace Eatvio\Chat\Eventing;
 
-use Musonza\Chat\Models\Message;
+use Eatvio\Chat\Models\Message;
 
 class AllParticipantsDeletedMessage extends Event
 {

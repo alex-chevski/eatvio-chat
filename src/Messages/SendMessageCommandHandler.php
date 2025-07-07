@@ -1,19 +1,20 @@
 <?php
 
-namespace Musonza\Chat\Messages;
+namespace Eatvio\Chat\Messages;
 
+use Eatvio\Chat\Eventing\EventDispatcher;
+use Eatvio\Chat\Models\Message;
 use Illuminate\Database\Eloquent\Model;
-use Musonza\Chat\Eventing\EventDispatcher;
-use Musonza\Chat\Models\Message;
 
 class SendMessageCommandHandler
 {
     protected $message;
+
     protected $dispatcher;
 
     /**
-     * @param EventDispatcher $dispatcher The dispatcher
-     * @param Message         $message    The message
+     * @param  EventDispatcher  $dispatcher  The dispatcher
+     * @param  Message  $message  The message
      */
     public function __construct(EventDispatcher $dispatcher, Message $message)
     {
@@ -24,8 +25,7 @@ class SendMessageCommandHandler
     /**
      * Triggers sending the message.
      *
-     * @param SendMessageCommand $command The command
-     *
+     * @param  SendMessageCommand  $command  The command
      * @return Model
      */
     public function handle(SendMessageCommand $command)

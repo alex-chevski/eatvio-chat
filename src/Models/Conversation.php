@@ -1,37 +1,39 @@
 <?php
 
-namespace Musonza\Chat\Models;
+namespace Eatvio\Chat\Models;
 
 use Chat;
+use Eatvio\Chat\BaseModel;
+use Eatvio\Chat\ConfigurationManager;
+use Eatvio\Chat\Eventing\AllParticipantsClearedConversation;
+use Eatvio\Chat\Eventing\ParticipantsJoined;
+use Eatvio\Chat\Eventing\ParticipantsLeft;
+use Eatvio\Chat\Exceptions\DeletingConversationWithParticipantsException;
+use Eatvio\Chat\Exceptions\DirectMessagingExistsException;
+use Eatvio\Chat\Exceptions\InvalidDirectMessageNumberOfParticipants;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
-use Musonza\Chat\BaseModel;
-use Musonza\Chat\ConfigurationManager;
-use Musonza\Chat\Eventing\AllParticipantsClearedConversation;
-use Musonza\Chat\Eventing\ParticipantsJoined;
-use Musonza\Chat\Eventing\ParticipantsLeft;
-use Musonza\Chat\Exceptions\DeletingConversationWithParticipantsException;
-use Musonza\Chat\Exceptions\DirectMessagingExistsException;
-use Musonza\Chat\Exceptions\InvalidDirectMessageNumberOfParticipants;
 
 class Conversation extends BaseModel
 {
     protected $table = ConfigurationManager::CONVERSATIONS_TABLE;
+
     protected $fillable = ['data', 'direct_message'];
+
     protected $casts = [
-        'data'           => 'array',
+        'data' => 'array',
         'direct_message' => 'boolean',
-        'private'        => 'boolean',
+        'private' => 'boolean',
     ];
 
     public function delete()
     {
         if ($this->participants()->count()) {
-            throw new DeletingConversationWithParticipantsException();
+            throw new DeletingConversationWithParticipantsException;
         }
 
         return parent::delete();
@@ -77,10 +79,8 @@ class Conversation extends BaseModel
     /**
      * Get messages for a conversation.
      *
-     * @param Model $participant
-     * @param array $paginationParams
-     * @param bool  $deleted
-     *
+     * @param  array  $paginationParams
+     * @param  bool  $deleted
      * @return LengthAwarePaginator|HasMany|Builder
      */
     public function getMessages(Model $participant, $paginationParams, $deleted = false)
@@ -96,18 +96,14 @@ class Conversation extends BaseModel
     public function participantFromSender(Model $sender)
     {
         return $this->participants()->where([
-            'conversation_id'  => $this->getKey(),
-            'messageable_id'   => $sender->getKey(),
+            'conversation_id' => $this->getKey(),
+            'messageable_id' => $sender->getKey(),
             'messageable_type' => $sender->getMorphClass(),
         ])->first();
     }
 
     /**
      * Add user to conversation.
-     *
-     * @param $participants
-     *
-     * @return Conversation
      */
     public function addParticipants(array $participants): self
     {
@@ -123,7 +119,6 @@ class Conversation extends BaseModel
     /**
      * Remove participant from conversation.
      *
-     * @param $participants
      *
      * @return Conversation
      */
@@ -149,18 +144,15 @@ class Conversation extends BaseModel
     /**
      * Starts a new conversation.
      *
-     * @param array $payload
      *
      * @throws DirectMessagingExistsException
      * @throws InvalidDirectMessageNumberOfParticipants
-     *
-     * @return Conversation
      */
     public function start(array $payload): self
     {
         if ($payload['direct_message']) {
             if (count($payload['participants']) > 2) {
-                throw new InvalidDirectMessageNumberOfParticipants();
+                throw new InvalidDirectMessageNumberOfParticipants;
             }
 
             $this->ensureNoDirectMessagingExist($payload['participants']);
@@ -179,8 +171,7 @@ class Conversation extends BaseModel
     /**
      * Sets conversation as public or private.
      *
-     * @param bool $isPrivate
-     *
+     * @param  bool  $isPrivate
      * @return Conversation
      */
     public function makePrivate($isPrivate = true)
@@ -194,17 +185,16 @@ class Conversation extends BaseModel
     /**
      * Sets conversation as direct message.
      *
-     * @param bool $isDirect
+     * @param  bool  $isDirect
+     * @return Conversation
      *
      * @throws InvalidDirectMessageNumberOfParticipants
      * @throws DirectMessagingExistsException
-     *
-     * @return Conversation
      */
     public function makeDirect($isDirect = true)
     {
         if ($this->participants()->count() > 2) {
-            throw new InvalidDirectMessageNumberOfParticipants();
+            throw new InvalidDirectMessageNumberOfParticipants;
         }
 
         $participants = $this->participants()->get()->pluck('messageable');
@@ -218,8 +208,6 @@ class Conversation extends BaseModel
     }
 
     /**
-     * @param $participants
-     *
      * @throws DirectMessagingExistsException
      */
     private function ensureNoDirectMessagingExist($participants)
@@ -227,18 +215,13 @@ class Conversation extends BaseModel
         /** @var Conversation $common */
         $common = Chat::conversations()->between($participants[0], $participants[1]);
 
-        if (!is_null($common)) {
-            throw new DirectMessagingExistsException();
+        if (! is_null($common)) {
+            throw new DirectMessagingExistsException;
         }
     }
 
     /**
      * Gets conversations for a specific participant.
-     *
-     * @param Model $participant
-     * @param bool  $isDirectMessage
-     *
-     * @return Collection
      */
     public function participantConversations(Model $participant, bool $isDirectMessage = false): Collection
     {
@@ -249,10 +232,6 @@ class Conversation extends BaseModel
 
     /**
      * Get unread notifications.
-     *
-     * @param Model $participant
-     *
-     * @return Collection
      */
     public function unReadNotifications(Model $participant): Collection
     {
@@ -269,9 +248,7 @@ class Conversation extends BaseModel
     /**
      * Gets the notifications for the participant.
      *
-     * @param      $participant
-     * @param bool $readAll
-     *
+     * @param  bool  $readAll
      * @return MessageNotification
      */
     public function getNotifications($participant, $readAll = false)
@@ -281,10 +258,6 @@ class Conversation extends BaseModel
 
     /**
      * Clears participant conversation.
-     *
-     * @param $participant
-     *
-     * @return void
      */
     public function clear($participant): void
     {
@@ -297,10 +270,6 @@ class Conversation extends BaseModel
 
     /**
      * Marks all the messages in a conversation as read for the participant.
-     *
-     * @param Model $participant
-     *
-     * @return void
      */
     public function readAll(Model $participant): void
     {
@@ -310,9 +279,6 @@ class Conversation extends BaseModel
     /**
      * Get messages in conversation for the specific participant.
      *
-     * @param Model $participant
-     * @param       $paginationParams
-     * @param       $deleted
      *
      * @return LengthAwarePaginator|HasMany|Builder
      */
@@ -343,9 +309,6 @@ class Conversation extends BaseModel
     }
 
     /**
-     * @param Model $participant
-     * @param       $options
-     *
      * @return mixed
      */
     private function getConversationsList(Model $participant, $options)

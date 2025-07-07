@@ -1,12 +1,12 @@
 <?php
 
-namespace Musonza\Chat\Http\Controllers;
+namespace Eatvio\Chat\Http\Controllers;
 
 use Chat;
-use Musonza\Chat\Http\Requests\StoreParticipation;
-use Musonza\Chat\Http\Requests\UpdateParticipation;
-use Musonza\Chat\Models\Conversation;
-use Musonza\Chat\Models\Participation;
+use Eatvio\Chat\Http\Requests\StoreParticipation;
+use Eatvio\Chat\Http\Requests\UpdateParticipation;
+use Eatvio\Chat\Models\Conversation;
+use Eatvio\Chat\Models\Participation;
 use Symfony\Component\HttpFoundation\Response;
 
 class ConversationParticipationController extends Controller

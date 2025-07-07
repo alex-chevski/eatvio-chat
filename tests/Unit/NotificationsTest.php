@@ -1,10 +1,10 @@
 <?php
 
-namespace Musonza\Chat\Tests;
+namespace Eatvio\Chat\Tests;
 
 use Chat;
+use Eatvio\Chat\Models\Conversation;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Musonza\Chat\Models\Conversation;
 
 class NotificationsTest extends TestCase
 {

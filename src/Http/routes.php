@@ -5,8 +5,8 @@ $middleware = config('musonza_chat.routes.middleware');
 
 Route::group([
     'middleware' => $middleware,
-    'namespace'  => 'Musonza\Chat\Http\Controllers',
-    'prefix'     => $chatRoutesPrefix,
+    'namespace' => 'Eatvio\Chat\Http\Controllers',
+    'prefix' => $chatRoutesPrefix,
 ], function () {
     /* Conversation */
     Route::get('/conversations', 'ConversationController@index')->name('conversations.index');
