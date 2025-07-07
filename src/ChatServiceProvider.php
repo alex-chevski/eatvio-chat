@@ -3,6 +3,10 @@
 namespace Musonza\Chat;
 
 use Illuminate\Support\ServiceProvider;
+use Musonza\Chat\Models\Conversation;
+use Musonza\Chat\Models\Message;
+use Musonza\Chat\Models\MessageNotification;
+use Musonza\Chat\Models\Participation;
 
 class ChatServiceProvider extends ServiceProvider
 {
@@ -24,8 +28,28 @@ class ChatServiceProvider extends ServiceProvider
         $this->publishConfig();
         $this->publishModels();
 
+        $this->registerModelBindings();
+
         if (config('musonza_chat.should_load_routes')) {
             require __DIR__.'/Http/routes.php';
+        }
+    }
+
+    public function registerModelBindings(): void
+    {
+        $models = [
+            'conversation' => Conversation::class,
+            'message' => Message::class,
+            'message_notification' => MessageNotification::class,
+            'participation' => Participation::class,
+        ];
+
+        foreach ($models as $key => $defaultClass) {
+            $customClass = config("musonza_chat.models.{$key}");
+
+            if ($customClass && class_exists($customClass)) {
+                $this->app->bind($defaultClass, fn () => $this->app->make($customClass));
+            }
         }
     }
 
