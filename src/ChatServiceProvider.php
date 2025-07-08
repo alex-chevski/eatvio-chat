@@ -49,6 +49,8 @@ class ChatServiceProvider extends ServiceProvider
 
             if ($customClass && class_exists($customClass)) {
                 $this->app->bind($defaultClass, fn () => $this->app->make($customClass));
+
+                $this->app->alias($customClass, $defaultClass);
             }
         }
     }
