@@ -30,7 +30,7 @@ class ChatServiceProvider extends ServiceProvider
 
         $this->registerModelBindings();
 
-        if (config('musonza_chat.should_load_routes')) {
+        if (config('eatvio_chat.should_load_routes')) {
             require __DIR__.'/Http/routes.php';
         }
     }
@@ -45,7 +45,7 @@ class ChatServiceProvider extends ServiceProvider
         ];
 
         foreach ($models as $key => $defaultClass) {
-            $customClass = config("musonza_chat.models.{$key}");
+            $customClass = config("eatvio_chat.models.{$key}");
 
             if ($customClass && class_exists($customClass)) {
                 $this->app->bind($defaultClass, fn () => $this->app->make($customClass));

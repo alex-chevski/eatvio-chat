@@ -249,7 +249,7 @@ class MessageTest extends TestCase
     /** @test */
     public function it_specifies_fields_to_return_for_sender()
     {
-        $this->app['config']->set('musonza_chat.sender_fields_whitelist', [
+        $this->app['config']->set('eatvio_chat.sender_fields_whitelist', [
             'name', 'bot_id',
         ]);
 

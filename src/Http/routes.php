@@ -1,7 +1,7 @@
 <?php
 
-$chatRoutesPrefix = config('musonza_chat.routes.path_prefix');
-$middleware = config('musonza_chat.routes.middleware');
+$chatRoutesPrefix = config('eatvio_chat.routes.path_prefix');
+$middleware = config('eatvio_chat.routes.middleware');
 
 Route::group([
     'middleware' => $middleware,

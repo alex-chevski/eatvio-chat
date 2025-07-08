@@ -51,7 +51,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function migrateTestTables()
     {
-        $config = config('musonza_chat');
+        $config = config('eatvio_chat');
         $userModel = app($config['user_model']);
         $this->userModelPrimaryKey = $userModel->getKeyName();
     }
@@ -101,12 +101,12 @@ class TestCase extends \Orchestra\Testbench\TestCase
         //             ],
         //         ]);
 
-        $app['config']->set('musonza_chat.user_model', 'Eatvio\Chat\Tests\Helpers\Models\User');
-        $app['config']->set('musonza_chat.sent_message_event', 'Eatvio\Chat\Eventing\MessageWasSent');
-        $app['config']->set('musonza_chat.broadcasts', false);
-        $app['config']->set('musonza_chat.user_model_primary_key', null);
-        $app['config']->set('musonza_chat.routes.enabled', true);
-        $app['config']->set('musonza_chat.should_load_routes', true);
+        $app['config']->set('eatvio_chat.user_model', 'Eatvio\Chat\Tests\Helpers\Models\User');
+        $app['config']->set('eatvio_chat.sent_message_event', 'Eatvio\Chat\Eventing\MessageWasSent');
+        $app['config']->set('eatvio_chat.broadcasts', false);
+        $app['config']->set('eatvio_chat.user_model_primary_key', null);
+        $app['config']->set('eatvio_chat.routes.enabled', true);
+        $app['config']->set('eatvio_chat.should_load_routes', true);
     }
 
     protected function getPackageProviders($app)

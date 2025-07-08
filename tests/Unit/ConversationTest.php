@@ -348,7 +348,7 @@ class ConversationTest extends TestCase
     /** @test */
     public function it_specifies_fields_to_return_for_sender()
     {
-        $this->app['config']->set('musonza_chat.sender_fields_whitelist', ['uid', 'email']);
+        $this->app['config']->set('eatvio_chat.sender_fields_whitelist', ['uid', 'email']);
 
         $conversation = Chat::createConversation([$this->alpha, $this->bravo]);
         $message = Chat::message('Hello')->from($this->alpha)->to($conversation)->send();

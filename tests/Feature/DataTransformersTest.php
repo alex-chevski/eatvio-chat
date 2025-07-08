@@ -20,7 +20,7 @@ class DataTransformersTest extends TestCase
     public function testConversationWithTransformer()
     {
         $conversation = factory(Conversation::class)->create();
-        $this->app['config']->set('musonza_chat.transformers.conversation', TestConversationTransformer::class);
+        $this->app['config']->set('eatvio_chat.transformers.conversation', TestConversationTransformer::class);
 
         $responseWithTransformer = $this->getJson(route('conversations.show', $conversation->getKey()))
             ->assertStatus(200);
