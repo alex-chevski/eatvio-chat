@@ -2,6 +2,16 @@
 
 return [
     /*
+    * redefine package models
+    */
+    'models' => [
+        'conversation' => null,
+        'message' => null,
+        'message_notification' => null,
+        'participation' => null,
+    ],
+
+    /*
      * This will allow you to broadcast an event when a message is sent
      * Example:
      * Channel: mc-chat-conversation.2,
