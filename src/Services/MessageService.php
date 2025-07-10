@@ -34,7 +34,7 @@ class MessageService
         $this->message = $message;
     }
 
-    public function setMessage($message)
+    public function setMessage(?string $message)
     {
         if (is_object($message)) {
             $this->message = $message;
@@ -121,10 +121,6 @@ class MessageService
     {
         if (! $this->sender) {
             throw new Exception('Message sender has not been set');
-        }
-
-        if (strlen($this->body) == 0) {
-            throw new Exception('Message body has not been set');
         }
 
         if (! $this->recipient) {

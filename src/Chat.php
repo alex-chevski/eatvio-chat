@@ -64,10 +64,9 @@ class Chat
     /**
      * Sets message.
      *
-     * @param  string  $message
      * @return MessageService
      */
-    public function message($message)
+    public function message(?string $message)
     {
         return $this->messageService->setMessage($message);
     }

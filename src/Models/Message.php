@@ -42,6 +42,10 @@ class Message extends BaseModel
 
     protected $appends = ['sender'];
 
+    protected $attributes = [
+        'body' => '',
+    ];
+
     public function participation()
     {
         return $this->belongsTo(Participation::class, 'participation_id');
